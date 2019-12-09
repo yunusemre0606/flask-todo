@@ -17,7 +17,7 @@ def index():
     return render_template('index.html',yapilacaklar = yapilacaklar)
 @app.route('/guncelle/<id>')
 def guncelle(id):
-    yap=db.find({'_id':ObjectId(id)})
+    yap=db.find_one({'_id':ObjectId(id)})
     durum=not yap.get('durum')
     db.find_one_and_update({'_id':ObjectId(id)},{'$set':{'durum':durum}})
     return redirect('/')
